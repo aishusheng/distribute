@@ -176,6 +176,7 @@ public class CuratorDemo {
             pathChildrenCache.getListenable().addListener(new PathChildrenCacheListener() {
                 @Override
                 public void childEvent(CuratorFramework curatorFramework, PathChildrenCacheEvent pathChildrenCacheEvent) throws Exception {
+
                     switch (pathChildrenCacheEvent.getType()){//判断当前子节点事件类型
                         case CHILD_ADDED://添加子节点
                             System.out.println("添加子节点");
@@ -204,6 +205,7 @@ public class CuratorDemo {
            /* NodeCache nodeCache = new NodeCache(curatorFramework,"/zkClientTest",false);//给指定节点添加节点监听事件
             nodeCache.start(true);//启动监听
             nodeCache.getListenable().addListener(new NodeCacheListener() {
+                //注意：NodeCacheListener无法监听到节点删除通知
                 @Override
                 public void nodeChanged() throws Exception {
                     System.out.println("节点数据发生变化,变化后的结果是:"+new String(nodeCache.getCurrentData().getData()));
